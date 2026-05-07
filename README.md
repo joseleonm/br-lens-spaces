@@ -14,8 +14,8 @@ polynomial invariants to 3-manifolds. The specific object of study is the
 Bollobás–Riordan polynomial of the canonical Heegaard ribbon graph of a lens
 space, investigated as a potential topological invariant of the manifold.
 
-The lens space L(p, q) admits a Heegaard splitting whose attaching curve defines a
-ribbon graph G(p; ±1, ±q) embedded on the torus T². The Bollobás–Riordan
+The lens space $L(p, q)$ admits a Heegaard splitting whose attaching curve defines a
+ribbon graph $G(p; ±1, ±q)$ embedded on the torus T². The Bollobás–Riordan
 polynomial BR(G) is a multivariate graph polynomial defined for ribbon graphs; it
 generalises the Tutte polynomial to the setting of graphs on surfaces and encodes
 both combinatorial and topological information about the embedding.
@@ -33,11 +33,11 @@ For the broader research context of the programme, see:
 This repository provides:
 
 1. **A primary database** (`data/BR_polynomials.json`) containing the full
-   Bollobás–Riordan polynomial of G(p; ±1, ±q), represented as a list of monomials
-   x^s · y^t · z^{2g}, for all orbits of L(p, q) under orientation-preserving
-   homeomorphism with 3 ≤ p ≤ 20 (45 cases).
+   Bollobás–Riordan polynomial of $G(p; ±1, ±q)$, represented as a list of monomials
+   $x^s · y^t · z^{2g}$, for all orbits of $L(p, q)$ under 
+   homeomorphism with $3 ≤ p ≤ 20$ (45 cases).
 
-2. **Interactive HTML explorers** (one per case, served via GitHub Pages) for p ≤ 20,
+2. **Interactive HTML explorers** (one per case, served via GitHub Pages) for $p ≤ 20$,
    allowing the user to select spanning subgraphs, inspect the corresponding monomial
    and ribbon-graph invariants, and visualise the polynomial as a heat-map in real time.
 
@@ -52,13 +52,13 @@ is a list of records. Each record has the following fields:
 
 | Field | Type | Description |
 |---|---|---|
-| `p` | int | Parameter p of the lens space L(p, q) |
-| `q` | int | Parameter q (canonical representative of the orbit under orientation-preserving homeomorphism) |
-| `S2` | int | Crest value: the leading coefficient of the S-profile, i.e. the maximum of the sequence (S(t))_t extracted from the z²-slice of BR(G). Zero for L(p,1). |
-| `m2` | int | Multiplicity of S₂: the number of t-values at which S(t) = S₂. Zero when S₂ = 0. |
-| `terms` | list | Monomials of BR(G) as `[s, t, z_exp, coefficient]`, where the monomial is x^s · y^t · z^{z_exp} |
+| `p` | int | Parameter $p$ of the lens space $L(p, q)$ |
+| `q` | int | Parameter $q$ (canonical representative of the orbit under homeomorphism) |
+| `S2` | int | Crest value: the leading coefficient of the S-profile, i.e. the maximum of the sequence $(S(t))_t$ extracted from the $z²$-slice of BR(G). Zero for $L(p,1)$. |
+| `m2` | int | Multiplicity of S₂: the number of t-values at which $S(t) = S₂$. Zero when $S₂ = 0$. |
+| `terms` | list | Monomials of BR(G) as `[s, t, z_exp, coefficient]`, where the monomial is $x^s · y^t · z^{z\text{ exp}}$ |
 
-The pair (S₂, m₂) is a coarse invariant of the lens space extractable directly from the
+The pair $(S₂, m₂)$ is a coarse invariant of the lens space extractable directly from the
 polynomial; finer invariants can be computed from the full `terms` list.
 
 ---
@@ -93,7 +93,14 @@ Benchmarks for the parallel implementation on an 8-core Apple M2 (via Cython + m
 
 ## Interactive explorers
 
-Open `index.html` locally, or visit the GitHub Pages URL above.
+Visit the GitHub Pages URL above, or serve the repository locally with a simple
+HTTP server (required — opening `index.html` directly via `file://` will fail
+because browsers block `fetch()` requests under that protocol):
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000 in a browser
+```
 Each explorer page shows:
 
 - **Left panel** — lattice grid for G(p; ±1, ±q); click edges to build a subgraph F.

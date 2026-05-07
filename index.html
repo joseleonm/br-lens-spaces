@@ -113,8 +113,13 @@ a.open-btn .arrow{font-size:1.1em;}
     if (!json || !Array.isArray(json.cases)) throw new Error("Missing 'cases' field");
     db = json;
   } catch (err) {
-    root.innerHTML = `<h4>Polynomial Browser</h4>
-      <p><strong>Could not load BR_polynomials.json:</strong> ${err.message}</p>`;
+    const isFileProtocol = location.protocol === 'file:';
+    root.innerHTML = `<p class="intro-line" style="color:#c0392b;">
+      <strong>Could not load the database.</strong>
+      ${isFileProtocol
+        ? 'This page cannot be opened via <code>file://</code> — browsers block cross-origin requests under that protocol. Serve the repository with a local HTTP server: <code>python3 -m http.server 8000</code>, then open <a href="http://localhost:8000">http://localhost:8000</a>.'
+        : `Error: ${err.message}`}
+    </p>`;
     return;
   }
 

@@ -392,7 +392,7 @@ if __name__ == "__main__":
     VERIFICAR = True                 # verifica R(x,y,1)=T(x,y+1) para p ≤ 11
     N_WORKERS = None                 # None = usar todos los cores disponibles
     OUT_JSON  = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                             "BR_polynomials.json")
+                             "..", "data", "BR_polynomials.json")
 
     n_workers_actual = N_WORKERS if N_WORKERS is not None else cpu_count()
     print("=" * 65)
