@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.so
+*.c
+build/
+.DS_Store
+*.sage.py

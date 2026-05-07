@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BR Polynomial Explorers &mdash; Lens Spaces</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:'Times New Roman',serif;max-width:780px;margin:40px auto;background:#fafafa;line-height:1.6;padding:0 16px;}
+h1{color:#1d3557;font-size:1.55em;margin-bottom:0.2em;}
+.subtitle{color:#444;font-size:1.0em;margin-top:0;margin-bottom:1.4em;}
+.section{margin-bottom:1.6em;}
+.section h2{color:#1d3557;font-size:1.15em;border-bottom:1px solid #c9d7ea;padding-bottom:4px;}
+table{border-collapse:collapse;width:100%;margin-top:0.6em;}
+th{background:#1d3557;color:white;padding:7px 14px;text-align:left;font-size:0.97em;}
+td{padding:5px 14px;border-bottom:1px solid #dde;font-size:0.97em;}
+a{color:#1d3557;text-decoration:none;}
+a:hover{text-decoration:underline;}
+tr:hover td{background:#eef4fb;}
+code{background:#eef4fb;padding:1px 5px;border-radius:3px;font-size:0.93em;}
+.badge{display:inline-block;background:#eef4fb;border:1px solid #c9d7ea;color:#1d3557;
+    padding:2px 8px;border-radius:999px;font-size:0.88em;margin:2px;}
+footer{margin-top:2em;font-size:0.88em;color:#888;border-top:1px solid #dde;padding-top:10px;}
+</style>
+</head>
+<body>
+
+<h1>Bollobás&ndash;Riordan Polynomial Database<br>
+<small style="font-size:0.65em;color:#456;">Lens Spaces L(p, q) via Heegaard Ribbon Graphs</small></h1>
+<p class="subtitle">
+  Interactive explorers for the Bollobás&ndash;Riordan polynomial of the Heegaard graph
+  G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) on the torus T&sup2;.
+  Each explorer lets you select spanning subgraphs and inspect the corresponding monomial,
+  the ribbon-graph invariants, and the torus embedding in real time.
+</p>
+
+<div class="section">
+<h2>How to use an explorer</h2>
+<p>
+  <strong>Left-click</strong> on an edge to add it to the subgraph F.
+  <strong>Right-click</strong> to remove it.
+  Use <em>Complete G</em> to select all 2p edges.
+  The panel on the right shows:
+</p>
+<ul>
+  <li>the monomial X<sup>s</sup>&thinsp;y<sup>t</sup>&thinsp;z<sup>2g(F)</sup> contributed by F,</li>
+  <li>ribbon-graph invariants k(F), f(F), g(F),</li>
+  <li>the coefficient of that monomial in BR(G),</li>
+  <li>the z-slice heat-map of the full polynomial at the selected genus level.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Explorers &mdash; all cases in the database (p &le; 17)</h2>
+<table>
+<tr><th>Lens space</th><th>Heegaard graph</th><th>Orbits up to symmetry</th></tr>
+  <tr><td><a href="br_L3_1.html">L(3,&thinsp;1)</a></td><td>G(3;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=3</span></td></tr>
+  <tr><td><a href="br_L4_1.html">L(4,&thinsp;1)</a></td><td>G(4;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=4</span></td></tr>
+  <tr><td><a href="br_L5_1.html">L(5,&thinsp;1)</a></td><td>G(5;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=5</span></td></tr>
+  <tr><td><a href="br_L5_2.html">L(5,&thinsp;2)</a></td><td>G(5;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L6_1.html">L(6,&thinsp;1)</a></td><td>G(6;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=6</span></td></tr>
+  <tr><td><a href="br_L7_1.html">L(7,&thinsp;1)</a></td><td>G(7;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=7</span></td></tr>
+  <tr><td><a href="br_L7_2.html">L(7,&thinsp;2)</a></td><td>G(7;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L8_1.html">L(8,&thinsp;1)</a></td><td>G(8;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=8</span></td></tr>
+  <tr><td><a href="br_L8_3.html">L(8,&thinsp;3)</a></td><td>G(8;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L9_1.html">L(9,&thinsp;1)</a></td><td>G(9;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=9</span></td></tr>
+  <tr><td><a href="br_L9_2.html">L(9,&thinsp;2)</a></td><td>G(9;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L10_1.html">L(10,&thinsp;1)</a></td><td>G(10;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=10</span></td></tr>
+  <tr><td><a href="br_L10_3.html">L(10,&thinsp;3)</a></td><td>G(10;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L11_1.html">L(11,&thinsp;1)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=11</span></td></tr>
+  <tr><td><a href="br_L11_2.html">L(11,&thinsp;2)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L11_3.html">L(11,&thinsp;3)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L12_1.html">L(12,&thinsp;1)</a></td><td>G(12;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=12</span></td></tr>
+  <tr><td><a href="br_L12_5.html">L(12,&thinsp;5)</a></td><td>G(12;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
+  <tr><td><a href="br_L13_1.html">L(13,&thinsp;1)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="4"><span class="badge">p=13</span></td></tr>
+  <tr><td><a href="br_L13_2.html">L(13,&thinsp;2)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L13_3.html">L(13,&thinsp;3)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L13_5.html">L(13,&thinsp;5)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
+  <tr><td><a href="br_L14_1.html">L(14,&thinsp;1)</a></td><td>G(14;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=14</span></td></tr>
+  <tr><td><a href="br_L14_3.html">L(14,&thinsp;3)</a></td><td>G(14;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L15_1.html">L(15,&thinsp;1)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=15</span></td></tr>
+  <tr><td><a href="br_L15_2.html">L(15,&thinsp;2)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L15_4.html">L(15,&thinsp;4)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;4)</td></tr>
+  <tr><td><a href="br_L16_1.html">L(16,&thinsp;1)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=16</span></td></tr>
+  <tr><td><a href="br_L16_3.html">L(16,&thinsp;3)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L16_7.html">L(16,&thinsp;7)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;7)</td></tr>
+  <tr><td><a href="br_L17_1.html">L(17,&thinsp;1)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="5"><span class="badge">p=17</span></td></tr>
+  <tr><td><a href="br_L17_2.html">L(17,&thinsp;2)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
+  <tr><td><a href="br_L17_3.html">L(17,&thinsp;3)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
+  <tr><td><a href="br_L17_4.html">L(17,&thinsp;4)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;4)</td></tr>
+  <tr><td><a href="br_L17_5.html">L(17,&thinsp;5)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
+</table>
+<p style="font-size:0.88em;color:#666;margin-top:8px;">
+  35 cases covering all orbits of L(p,q) under orientation-preserving homeomorphism
+  for 3 &le; p &le; 17.
+  An additional file <a href="br_L17_3_shapes.html">br_L17_3_shapes.html</a> shows
+  the shape decomposition for L(17,3).
+</p>
+</div>
+
+<div class="section">
+<h2>Repository contents</h2>
+<table>
+<tr><th>Path</th><th>Description</th></tr>
+<tr><td><code>data/BR_polynomials.json</code></td>
+    <td>Primary database: full BR polynomial (as term list) for each case, plus S-profile and invariants S₂, m₂, F, G</td></tr>
+<tr><td><code>src/generate_explorers.py</code></td>
+    <td>Python script that regenerates all HTML explorers from the JSON</td></tr>
+<tr><td><code>src/BR_lens_parallel.sage</code></td>
+    <td>SageMath script: parallel computation of BR polynomials via multiprocessing + Cython</td></tr>
+<tr><td><code>src/BR_lens_worker.py</code></td>
+    <td>Worker module used by the parallel script</td></tr>
+<tr><td><code>src/BR_lens_core.pyx</code></td>
+    <td>Cython extension: hot loop for ribbon-graph face counting (~1M masks/s per core)</td></tr>
+<tr><td><code>src/setup_BR.py</code></td>
+    <td>Build script for the Cython extension</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Regenerating the explorers</h2>
+<pre style="background:#eef4fb;padding:10px;border-radius:4px;font-size:0.9em;overflow-x:auto;">
+# Install dependencies
+pip install numpy plotly
+
+# Regenerate all HTML files from the JSON
+python src/generate_explorers.py
+</pre>
+</div>
+
+<footer>
+  Data computed with SageMath 10.7 + Cython on an 8-core Mac mini (Apple M2).
+  Ribbon-graph model: Heegaard splitting of the lens space L(p,q);
+  graph G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) has p vertices and 2p edges on T&sup2;.
+  &mdash; Jose L. Leon &mdash;
+  <a href="https://github.com/joseluis/br-lens-spaces">github.com/joseluis/br-lens-spaces</a>
+</footer>
+</body>
+</html>
