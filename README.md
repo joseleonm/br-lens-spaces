@@ -5,6 +5,8 @@ of Heegaard ribbon graphs of lens spaces L(p, q).**
 
 Live explorers: **https://joseleonm.github.io/br-lens-spaces/**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20065407.svg)](https://doi.org/10.5281/zenodo.20065407)
+
 ---
 
 ## Mathematical background
@@ -168,9 +170,10 @@ rigorously verified against the mathematical theory.
 If you use this database or the explorers in your research, please cite:
 
 ```
-Jose L. Leon.
+José Luis León-Medina.
 Bollobás–Riordan Polynomials of Lens Spaces: database and interactive explorers.
-Zenodo, 2026. DOI: [to be assigned upon Zenodo release]
+Zenodo, 2026. DOI: 10.5281/zenodo.20065407
+https://doi.org/10.5281/zenodo.20065407
 ```
 
 ---

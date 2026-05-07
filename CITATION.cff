@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this database or explorers in your research, please cite as below."
+type: dataset
+authors:
+  - family-names: León-Medina
+    given-names: José Luis
+    affiliation: "CIMAT Mérida"
+title: "Bollobás–Riordan Polynomials of Lens Spaces: database and interactive explorers"
+version: v1.0.1
+date-released: "2026-05-07"
+doi: 10.5281/zenodo.20065408
+url: "https://joseleonm.github.io/br-lens-spaces/"
+repository-code: "https://github.com/joseleonm/br-lens-spaces"
+license: CC-BY-4.0
+keywords:
+  - lens spaces
+  - Bollobás–Riordan polynomial
+  - ribbon graphs
+  - Heegaard graphs
+  - 3-manifolds
+  - topological invariants
+references:
+  - type: article
+    authors:
+      - family-names: Frías
+        given-names: José
+      - family-names: Gómez-Larrañaga
+        given-names: José Carlos
+      - family-names: León-Medina
+        given-names: José Luis
+      - family-names: Manjarrez-Gutiérrez
+        given-names: Fabiola
+    title: "3-manifold polynomials"
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2510.06651"
+    url: "https://arxiv.org/abs/2510.06651"
