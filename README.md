@@ -7,7 +7,7 @@ Live explorers: **https://joseleonm.github.io/br-lens-spaces/**
 
 ---
 
-## Scientific context
+## Mathematical background
 
 This repository is part of a research programme concerned with associating
 polynomial invariants to 3-manifolds. The specific object of study is the
@@ -19,6 +19,12 @@ ribbon graph G(p; ±1, ±q) embedded on the torus T². The Bollobás–Riordan
 polynomial BR(G) is a multivariate graph polynomial defined for ribbon graphs; it
 generalises the Tutte polynomial to the setting of graphs on surfaces and encodes
 both combinatorial and topological information about the embedding.
+
+For the broader research context of the programme, see:
+
+> J. Frías, J. C. Gómez-Larrañaga, J. L. León-Medina, F. Manjarrez-Gutiérrez.
+> *3-manifold polynomials.* arXiv:2510.06651, 2025.
+> https://arxiv.org/abs/2510.06651
 
 ---
 

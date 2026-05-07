@@ -9,87 +9,89 @@ MathJax = { tex: { inlineMath: [['\\(','\\)']] }, startup: { typeset: false } };
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <style>
 *{box-sizing:border-box;}
-body{margin:0;font-family:'Times New Roman',serif;background:#f5f7fa;color:#1a1a2e;font-size:17px;}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;background:#f4f6fa;
+     color:#1a1a2e;font-size:20px;line-height:1.55;}
 
 /* ── Header ── */
-#header{background:#1d3557;color:white;padding:14px 28px;display:flex;
-        align-items:center;gap:18px;flex-wrap:wrap;}
-#header h1{margin:0;font-size:1.22em;font-weight:bold;color:white;flex:1;}
-#header .sub{font-size:0.84em;color:#a8c8e8;white-space:nowrap;}
-#header a.gh{color:#a8d8f0;font-size:0.85em;text-decoration:none;border:1px solid #a8d8f0;
-             padding:3px 10px;border-radius:4px;}
-#header a.gh:hover{background:rgba(168,216,240,0.15);}
+#header{background:#1d3557;color:white;padding:16px 32px;
+        display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+#header h1{margin:0;font-size:1.18em;font-weight:bold;color:white;flex:1;
+           line-height:1.3;}
+#header .sub{font-size:0.78em;color:#a8c8e8;white-space:nowrap;}
+#header a.gh{color:white;font-size:0.85em;text-decoration:none;
+             background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);
+             padding:5px 14px;border-radius:5px;white-space:nowrap;font-weight:600;
+             transition:background .15s;}
+#header a.gh:hover{background:rgba(255,255,255,0.28);}
 
 /* ── Layout ── */
-#main{max-width:1020px;margin:0 auto;padding:22px 20px 50px;}
+#main{max-width:1040px;margin:0 auto;padding:28px 24px 56px;}
 
 /* ── Hero ── */
 .hero{background:linear-gradient(135deg,#1d3557 0%,#2a6496 100%);color:white;
-      border-radius:8px;padding:22px 28px;margin-bottom:24px;
-      display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-.hero-text{flex:1;min-width:260px;}
-.hero-text h2{margin:0 0 8px;font-size:1.18em;font-weight:bold;color:white;}
-.hero-text p{margin:0;font-size:0.97em;color:#c8ddf0;line-height:1.5;}
-.hero-action{text-align:center;flex:0 0 auto;}
-.hero-action .note{font-size:0.82em;color:#a8c8e8;margin-top:6px;}
+      border-radius:10px;padding:26px 32px;margin-bottom:28px;}
+.hero h2{margin:0 0 10px;font-size:1.15em;font-weight:bold;color:white;}
+.hero p{margin:0;font-size:0.94em;color:#c8ddf0;line-height:1.55;}
 
 /* ── Explorer widget ── */
-#br-quick-explorer{background:white;border:1px solid #d0daea;border-radius:8px;
-                   padding:18px 20px;margin-bottom:24px;
-                   box-shadow:0 2px 8px rgba(29,53,87,0.07);}
-#br-quick-explorer h4{margin:0 0 14px;color:#1d3557;font-size:1.12em;
-                      border-bottom:2px solid #e4eaf4;padding-bottom:8px;}
-.meta{color:#666;margin-bottom:12px;font-size:0.91em;}
+#br-quick-explorer{background:white;border:1px solid #ccd6ea;border-radius:10px;
+                   padding:22px 26px;margin-bottom:28px;
+                   box-shadow:0 2px 12px rgba(29,53,87,0.08);}
+#br-quick-explorer h4{margin:0 0 18px;color:#1d3557;font-size:1.08em;
+                      border-bottom:2px solid #e2eaf6;padding-bottom:10px;}
+.meta{color:#666;margin-bottom:16px;font-size:0.88em;}
 
-/* Open-explorer card */
-#explorer-card{background:linear-gradient(135deg,#eef6ff 0%,#deeeff 100%);
-               border:2px solid #1d3557;border-radius:8px;padding:14px 20px;
-               margin-bottom:18px;display:flex;align-items:center;gap:18px;
-               flex-wrap:wrap;}
-#explorer-card .ec-text{flex:1;min-width:200px;}
-#explorer-card .ec-text strong{display:block;color:#1d3557;font-size:1.06em;margin-bottom:3px;}
-#explorer-card .ec-text span{font-size:0.91em;color:#445;line-height:1.4;}
-#explorer-card a.open-btn{display:inline-block;background:#1d3557;color:white;
-  padding:9px 22px;border-radius:5px;text-decoration:none;font-weight:bold;
-  font-size:1.02em;white-space:nowrap;letter-spacing:0.01em;transition:background .15s;}
-#explorer-card a.open-btn:hover{background:#2a6496;}
-#explorer-card a.open-btn .arrow{font-size:1.1em;margin-left:5px;}
+/* Selector row: case picker + open button side by side */
+.selector-row{display:flex;align-items:flex-end;gap:14px;
+              flex-wrap:wrap;margin-bottom:8px;}
+.selector-row > div{flex:0 0 auto;}
+.selector-row label{display:block;font-weight:700;margin-bottom:4px;
+                    font-size:0.92em;color:#223;}
+.selector-row select{padding:7px 10px;border:1px solid #c0cfe8;border-radius:5px;
+                      background:white;font-size:1em;font-family:inherit;
+                      min-width:160px;}
+a.open-btn{display:inline-flex;align-items:center;gap:6px;
+           background:#1d3557;color:white;padding:8px 22px;
+           border-radius:5px;text-decoration:none;font-weight:700;
+           font-size:0.94em;white-space:nowrap;transition:background .15s;
+           border:none;cursor:pointer;}
+a.open-btn:hover{background:#2a6496;}
+a.open-btn .arrow{font-size:1.1em;}
+.explorer-note{font-size:0.86em;color:#556;margin:6px 0 16px;
+               line-height:1.45;font-style:italic;}
 
-.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+/* Filter controls */
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
           gap:10px;margin-bottom:12px;}
-.controls label{display:block;font-weight:600;margin-bottom:3px;font-size:0.93em;color:#334;}
+.controls label{display:block;font-weight:700;margin-bottom:3px;
+                font-size:0.88em;color:#334;}
 .controls select,.controls input[type="number"]{
-  width:100%;padding:5px 8px;border:1px solid #c8d5e8;border-radius:4px;
-  background:white;font-size:0.93em;}
-.checks{display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:10px;font-size:0.93em;}
+  width:100%;padding:5px 8px;border:1px solid #c0cfe8;border-radius:4px;
+  background:white;font-size:0.9em;font-family:inherit;}
+.checks{display:flex;flex-wrap:wrap;gap:10px 22px;margin-bottom:10px;
+        font-size:0.9em;}
 .checks label{font-weight:500;margin:0;color:#334;}
-#br-summary{margin:4px 0 10px;font-weight:600;font-size:0.93em;color:#1d3557;}
-.table-wrap{max-height:460px;overflow:auto;border:1px solid #d0daea;border-radius:4px;}
-#br-quick-explorer table{width:100%;border-collapse:collapse;margin:0;font-size:0.92em;}
+#br-summary{margin:4px 0 10px;font-weight:700;font-size:0.9em;color:#1d3557;}
+.table-wrap{max-height:460px;overflow:auto;border:1px solid #ccd6ea;border-radius:5px;}
+#br-quick-explorer table{width:100%;border-collapse:collapse;margin:0;font-size:0.88em;}
 #br-quick-explorer th,#br-quick-explorer td{
-  border:1px solid #dde4f0;padding:4px 10px;text-align:left;}
+  border:1px solid #dde6f2;padding:5px 11px;text-align:left;}
 #br-quick-explorer th{background:#eef4fb;color:#1d3557;
-  position:sticky;top:0;z-index:1;font-size:0.91em;}
+  position:sticky;top:0;z-index:1;font-size:0.88em;}
 #br-quick-explorer tr:hover td{background:#f5f9ff;}
 
-/* ── Sections ── */
-h2{color:#1d3557;font-size:1.06em;border-bottom:2px solid #d0daea;
-   padding-bottom:4px;margin-top:2.2em;}
-table.info{border-collapse:collapse;width:100%;margin:.5em 0 1em;font-size:.92em;}
-table.info th{background:#1d3557;color:white;padding:6px 12px;text-align:left;}
-table.info td{padding:5px 12px;border-bottom:1px solid #dde;}
-table.info tr:hover td{background:#eef4fb;}
-table.info .r{text-align:right;}
-code{background:#eef4fb;padding:1px 5px;border-radius:3px;font-size:.86em;font-family:monospace;}
-pre{background:#eef4fb;padding:12px 14px;border-radius:5px;font-size:.86em;
-    overflow-x:auto;border:1px solid #d0daea;line-height:1.5;}
-.ack{background:#fff8e6;border-left:4px solid #c8a020;padding:10px 16px;
-     border-radius:0 5px 5px 0;margin:1em 0;font-size:.95em;line-height:1.55;}
-.ack p{margin:.25em 0;}
-.badge-hpc{display:inline-block;background:#fff3cd;border:1px solid #c8a020;
-           color:#7a5000;padding:1px 7px;border-radius:999px;font-size:.82em;}
-footer{font-size:.83em;color:#888;border-top:1px solid #dde;
-       padding-top:10px;margin-top:2.4em;line-height:1.6;}
+/* ── Sections below ── */
+h2{color:#1d3557;font-size:1.04em;border-bottom:2px solid #ccd6ea;
+   padding-bottom:4px;margin-top:2.4em;}
+p.about{font-size:0.94em;line-height:1.6;color:#222;}
+p.about cite{font-style:italic;}
+code{background:#eef4fb;padding:2px 6px;border-radius:3px;
+     font-size:0.84em;font-family:monospace;}
+pre{background:#eef4fb;padding:13px 16px;border-radius:6px;font-size:0.84em;
+    overflow-x:auto;border:1px solid #ccd6ea;line-height:1.55;
+    font-family:'Courier New',monospace;}
+footer{font-size:0.82em;color:#888;border-top:1px solid #dde;
+       padding-top:10px;margin-top:2.6em;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -97,24 +99,23 @@ footer{font-size:.83em;color:#888;border-top:1px solid #dde;
 <div id="header">
   <h1>Bollobás&ndash;Riordan Polynomial Database &mdash; Lens Spaces L(p,&thinsp;q)</h1>
   <span class="sub">45 cases &nbsp;|&nbsp; p &le; 20 &nbsp;|&nbsp; Heegaard ribbon graphs on T&sup2;</span>
-  <a class="gh" href="https://github.com/joseleonm/br-lens-spaces">GitHub</a>
+  <a class="gh" href="https://github.com/joseleonm/br-lens-spaces" target="_blank">
+    &#128279;&nbsp; GitHub Repository
+  </a>
 </div>
 
 <div id="main">
 
-<!-- ── Hero ─────────────────────────────────────────────────────────────────── -->
 <div class="hero">
-  <div class="hero-text">
-    <h2>Bollobás&ndash;Riordan Polynomial of Lens Spaces</h2>
-    <p>
-      For each lens space L(p,&thinsp;q), the canonical Heegaard ribbon graph
-      G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) is embedded on the torus T&sup2;.
-      This database contains the full BR polynomial of G, computed for all
-      45 homeomorphism orbits with 3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20.
-      Each case comes with an <strong>interactive graph explorer</strong>
-      for visualising spanning subgraphs and their polynomial contributions in real time.
-    </p>
-  </div>
+  <h2>Bollobás&ndash;Riordan Polynomial of Lens Spaces</h2>
+  <p>
+    For each lens space L(p,&thinsp;q), the canonical Heegaard ribbon graph
+    G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) is embedded on the torus T&sup2;.
+    This database contains the full BR polynomial of G for all 45 homeomorphism
+    orbits with 3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20. Select a case below to
+    browse the polynomial term by term and open the corresponding
+    <strong>interactive graph explorer</strong>.
+  </p>
 </div>
 
 <!-- ── Inline explorer widget ─────────────────────────────────────────────── -->
@@ -124,63 +125,28 @@ footer{font-size:.83em;color:#888;border-top:1px solid #dde;
 </div>
 
 <!-- ── About ─────────────────────────────────────────────────────────────── -->
-<h2>About the database</h2>
-<p>
+<h2>About</h2>
+<p class="about">
   The file <code>data/BR_polynomials.json</code> contains, for each of the 45
   canonical orbits of L(p,&thinsp;q) under orientation-preserving homeomorphism
-  (3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20), the following data:
-  the full list of monomials \(x^s y^t z^{2g}\) of the Bollobás&ndash;Riordan
-  polynomial of G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q), together with the
-  crest invariants S<sub>2</sub> and m<sub>2</sub> extracted from the
-  z<sup>2</sup>-slice of BR(G).
+  (3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20), the full list of monomials
+  \(x^s y^t z^{2g}\) of BR(G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q)), together
+  with the crest invariants S<sub>2</sub> and m<sub>2</sub>.
+  This work is part of a research programme associating polynomial invariants
+  to 3-manifolds; for background see
+  <cite>J. Frías, J. C. Gómez-Larrañaga, J. L. León-Medina,
+  F. Manjarrez-Gutiérrez, &ldquo;3-manifold polynomials,&rdquo;
+  <a href="https://arxiv.org/abs/2510.06651" target="_blank">arXiv:2510.06651</a>,
+  2025</cite>.
 </p>
-
-<h2>Computational complexity</h2>
-<p>
-  The computation enumerates all 2<sup>2p</sup> spanning subgraphs, reduced by
-  Z/pZ symmetry to necklace classes. Cases p&nbsp;=&nbsp;18, 19, 20
-  (<span class="badge-hpc">&#9733; HPC</span>) required the
-  CIMAT&ndash;Mérida supercomputer.
-</p>
-<table class="info">
-<tr><th>p</th><th class="r">Homeo. classes</th><th class="r">Canonical pairs</th><th class="r">Time (1 core)</th></tr>
-<tr><td>5</td> <td class="r">1</td><td class="r">220</td>           <td class="r">&lt;0.1 s</td></tr>
-<tr><td>7</td> <td class="r">2</td><td class="r">2 340</td>         <td class="r">~0.5 s</td></tr>
-<tr><td>11</td><td class="r">4</td><td class="r">382 K</td>         <td class="r">~5 s</td></tr>
-<tr><td>13</td><td class="r">5</td><td class="r">5 M</td>           <td class="r">~60 s</td></tr>
-<tr><td>17</td><td class="r">7</td><td class="r">1 G</td>           <td class="r">hours</td></tr>
-<tr><td>19 <span class="badge-hpc">&#9733;</span></td><td class="r">8</td><td class="r">14 G</td><td class="r">days</td></tr>
-</table>
-
-<h2>Reproducing the computation</h2>
-<pre># Build the Cython extension (recommended for p &ge; 13)
-cd src/ &amp;&amp; sage -python setup_BR.py build_ext --inplace
-
-# Recompute all polynomials
-sage src/BR_lens_parallel.sage
-
-# Regenerate the HTML explorers from the JSON
-python generate_explorers.py</pre>
-
-<h2>Acknowledgements</h2>
-<div class="ack">
-  <p>Supported by <strong>SECIHTI grant CBF2023-2024-4059</strong>:
-     <em>&ldquo;Interacciones topológico-computacionales&rdquo;</em>.</p>
-  <p>Cases p&nbsp;=&nbsp;18, 19, 20 computed on the
-     <strong>Supercomputer of Unidad CIMAT&ndash;Mérida</strong>
-     (Centro de Investigación en Matemáticas, Mérida, México).</p>
-  <p>Portions of the implementation were developed with AI assistance and have been
-     rigorously verified against the mathematical theory.</p>
-</div>
 
 <h2>Citation</h2>
 <pre>Jose L. Leon. Bollobás–Riordan Polynomials of Lens Spaces: database and interactive explorers.
 Zenodo, 2026. DOI: [to be assigned]</pre>
 
 <footer>
-  SageMath&nbsp;10.7 + Cython + multiprocessing &nbsp;|&nbsp;
   CC&nbsp;BY&nbsp;4.0 (data) &nbsp;+&nbsp; MIT (code) &nbsp;|&nbsp;
-  <a href="https://github.com/joseleonm/br-lens-spaces">github.com/joseleonm/br-lens-spaces</a>
+  <a href="https://github.com/joseleonm/br-lens-spaces" target="_blank">github.com/joseleonm/br-lens-spaces</a>
 </footer>
 </div><!-- #main -->
 
@@ -203,7 +169,6 @@ Zenodo, 2026. DOI: [to be assigned]</pre>
   }
 
   const cases = db.cases.slice().sort((a, b) => (a.p - b.p) || (a.q - b.q));
-
   function caseLabel(c) { return `L(${c.p},${c.q})`; }
 
   function getMaxExponents(c) {
@@ -214,25 +179,25 @@ Zenodo, 2026. DOI: [to be assigned]</pre>
 
   root.innerHTML = `
     <h4>Polynomial Browser</h4>
-    <div id="explorer-card">
-      <div class="ec-text">
-        <strong>Interactive Graph Explorer</strong>
-        <span>Click edges to build spanning subgraphs, inspect ribbon-graph invariants
-          k(F), f(F), g(F), and see each monomial's position in the z-slice heat-map.</span>
-      </div>
-      <a id="open-explorer-btn" class="open-btn" href="#" target="_blank">
-        Open Explorer <span class="arrow">&#8599;</span>
-      </a>
-    </div>
     <div class="meta">
       Source: <code>data/BR_polynomials.json</code> &nbsp;&middot;&nbsp;
       Cases loaded: <strong>${cases.length}</strong>
     </div>
-    <div class="controls">
+    <div class="selector-row">
       <div>
-        <label for="br-case">Lens space L(p,q)</label>
+        <label for="br-case">Lens space L(p,&thinsp;q)</label>
         <select id="br-case"></select>
       </div>
+      <a id="open-explorer-btn" class="open-btn" href="#" target="_blank">
+        Open Interactive Explorer <span class="arrow">&#8599;</span>
+      </a>
+    </div>
+    <p class="explorer-note">
+      The interactive explorer for the selected L(p,&thinsp;q) lets you click edges to
+      build spanning subgraphs, inspect ribbon-graph invariants k(F), f(F), g(F),
+      and visualise the z-slice heat-map in real time.
+    </p>
+    <div class="controls">
       <div>
         <label for="br-sort">Sort monomials by</label>
         <select id="br-sort">
@@ -281,11 +246,11 @@ Zenodo, 2026. DOI: [to be assigned]</pre>
   const exMax = root.querySelector('#br-ex-max');
   const eyMin = root.querySelector('#br-ey-min');
   const eyMax = root.querySelector('#br-ey-max');
-  const z0    = root.querySelector('#br-z0');
-  const z2    = root.querySelector('#br-z2');
-  const summary    = root.querySelector('#br-summary');
-  const body       = root.querySelector('#br-body');
-  const openBtn    = root.querySelector('#open-explorer-btn');
+  const z0       = root.querySelector('#br-z0');
+  const z2       = root.querySelector('#br-z2');
+  const summary  = root.querySelector('#br-summary');
+  const body     = root.querySelector('#br-body');
+  const openBtn  = root.querySelector('#open-explorer-btn');
 
   for (const c of cases) {
     const opt = document.createElement('option');
@@ -349,7 +314,7 @@ Zenodo, 2026. DOI: [to be assigned]</pre>
 
     summary.textContent =
       `${caseLabel(c)} · total terms: ${c.terms.length} · filtered: ${terms.length}`
-      + (c.S2 > 0 ? ` · S₂ = ${c.S2}, m₂ = ${c.m2}` : '');
+      + (c.S2 > 0 ? ` · S₂ = ${c.S2}, m₂ = ${c.m2}` : '');
 
     openBtn.href = `L${c.p}_${c.q}.html`;
     openBtn.title = `Open interactive explorer for G(${c.p}; ±1, ±${c.q})`;
