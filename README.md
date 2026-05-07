@@ -3,24 +3,37 @@
 **Primary database and interactive explorers for the Bollobás–Riordan polynomial
 of Heegaard ribbon graphs of lens spaces L(p, q).**
 
-Live explorers: **https://joseluis.github.io/br-lens-spaces/**
+Live explorers: **https://joseleonm.github.io/br-lens-spaces/**
 
 ---
 
-## Overview
+## Scientific context
+
+This repository is part of a research programme concerned with associating
+polynomial invariants to 3-manifolds. The specific object of study is the
+Bollobás–Riordan polynomial of the canonical Heegaard ribbon graph of a lens
+space, investigated as a potential topological invariant of the manifold.
 
 The lens space L(p, q) admits a Heegaard splitting whose attaching curve defines a
-ribbon graph G(p; ±1, ±q) embedded on the torus T². This repository provides:
+ribbon graph G(p; ±1, ±q) embedded on the torus T². The Bollobás–Riordan
+polynomial BR(G) is a multivariate graph polynomial defined for ribbon graphs; it
+generalises the Tutte polynomial to the setting of graphs on surfaces and encodes
+both combinatorial and topological information about the embedding.
+
+---
+
+## Repository contents
+
+This repository provides:
 
 1. **A primary database** (`data/BR_polynomials.json`) containing the full
    Bollobás–Riordan polynomial of G(p; ±1, ±q), represented as a list of monomials
-   X^s · y^t · z^{2g}, for all orbits of L(p, q) under orientation-preserving
+   x^s · y^t · z^{2g}, for all orbits of L(p, q) under orientation-preserving
    homeomorphism with 3 ≤ p ≤ 20 (45 cases).
 
-2. **Interactive HTML explorers** (one per case, served via GitHub Pages) for p ≤ 17
-   (35 cases), allowing the user to select spanning subgraphs, inspect the
-   corresponding monomial and ribbon-graph invariants, and visualize the polynomial
-   as a heat-map in real time.
+2. **Interactive HTML explorers** (one per case, served via GitHub Pages) for p ≤ 20,
+   allowing the user to select spanning subgraphs, inspect the corresponding monomial
+   and ribbon-graph invariants, and visualise the polynomial as a heat-map in real time.
 
 3. **Computation source code** (SageMath + Cython) to reproduce or extend the database.
 
@@ -34,23 +47,20 @@ is a list of records. Each record has the following fields:
 | Field | Type | Description |
 |---|---|---|
 | `p` | int | Parameter p of the lens space L(p, q) |
-| `q` | int | Parameter q (canonical representative of the orbit) |
-| `terms` | list | Monomials of BR(G) as `[s, t, z_exp, coefficient]` |
-| `S2` | int | First non-trivial coefficient of the S-profile (crest value) |
-| `m2` | int | Multiplicity m₂ |
-| `F` | int | Invariant F (second elementary symmetric function of determinants) |
-| `G` | int | Invariant G (third elementary symmetric function of determinants) |
-| `profile` | list | Full S-profile T₀ |
+| `q` | int | Parameter q (canonical representative of the orbit under orientation-preserving homeomorphism) |
+| `S2` | int | Crest value: the leading coefficient of the S-profile, i.e. the maximum of the sequence (S(t))_t extracted from the z²-slice of BR(G). Zero for L(p,1). |
+| `m2` | int | Multiplicity of S₂: the number of t-values at which S(t) = S₂. Zero when S₂ = 0. |
+| `terms` | list | Monomials of BR(G) as `[s, t, z_exp, coefficient]`, where the monomial is x^s · y^t · z^{z_exp} |
 
-The tuple (S₂, m₂, F, G) distinguishes all 35 prime-p orbits up to p = 100, including
-the 24 pairs with equal (S₂, m₂).
+The pair (S₂, m₂) is a coarse invariant of the lens space extractable directly from the
+polynomial; finer invariants can be computed from the full `terms` list.
 
 ---
 
 ## Computational complexity
 
-The computation enumerates all 2^{2p} spanning subgraphs of G, reduced by the
-Z/pZ symmetry to necklace classes.
+The computation enumerates all $2^{2p}$ spanning subgraphs of G, reduced by the
+$\mathbb{Z}/p\mathbb{Z}$ symmetry to necklace classes.
 
 | p  | Homeo. classes | Canonical pairs (approx.) | Time (1 core) |
 |---:|:--------------:|--------------------------:|--------------:|
