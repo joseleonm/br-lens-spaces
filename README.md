@@ -130,10 +130,10 @@ Output is written to `../data/BR_polynomials.json`.
 
 ```bash
 pip install numpy
-python src/generate_explorers.py
+python generate_explorers.py
 ```
 
-This reads `data/BR_polynomials.json` and writes one `br_L{p}_{q}.html` per case.
+This reads `data/BR_polynomials.json` and writes one `L{p}_{q}.html` per case.
 
 ---
 
