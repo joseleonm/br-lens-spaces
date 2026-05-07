@@ -2,137 +2,329 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>BR Polynomial Explorers &mdash; Lens Spaces</title>
+<title>BR Polynomial Database &mdash; Lens Spaces L(p,q)</title>
+<script>
+MathJax = { tex: { inlineMath: [['\\(','\\)']] }, startup: { typeset: false } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <style>
 *{box-sizing:border-box;}
-body{font-family:'Times New Roman',serif;max-width:780px;margin:40px auto;background:#fafafa;line-height:1.6;padding:0 16px;}
-h1{color:#1d3557;font-size:1.55em;margin-bottom:0.2em;}
-.subtitle{color:#444;font-size:1.0em;margin-top:0;margin-bottom:1.4em;}
-.section{margin-bottom:1.6em;}
-.section h2{color:#1d3557;font-size:1.15em;border-bottom:1px solid #c9d7ea;padding-bottom:4px;}
-table{border-collapse:collapse;width:100%;margin-top:0.6em;}
-th{background:#1d3557;color:white;padding:7px 14px;text-align:left;font-size:0.97em;}
-td{padding:5px 14px;border-bottom:1px solid #dde;font-size:0.97em;}
-a{color:#1d3557;text-decoration:none;}
-a:hover{text-decoration:underline;}
-tr:hover td{background:#eef4fb;}
-code{background:#eef4fb;padding:1px 5px;border-radius:3px;font-size:0.93em;}
-.badge{display:inline-block;background:#eef4fb;border:1px solid #c9d7ea;color:#1d3557;
-    padding:2px 8px;border-radius:999px;font-size:0.88em;margin:2px;}
-footer{margin-top:2em;font-size:0.88em;color:#888;border-top:1px solid #dde;padding-top:10px;}
+body{margin:0;font-family:'Times New Roman',serif;background:#fafafa;color:#1a1a2e;font-size:17px;}
+
+#header{background:#1d3557;color:white;padding:12px 22px;display:flex;
+        align-items:baseline;gap:18px;flex-wrap:wrap;}
+#header h1{margin:0;font-size:1.25em;font-weight:bold;color:white;}
+#header .sub{font-size:0.85em;color:#a8c8e8;}
+#header a{color:#a8d8f0;font-size:0.85em;margin-left:auto;}
+
+#main{max-width:980px;margin:0 auto;padding:18px 18px 40px;}
+
+.callout{background:#eef5ff;border-left:4px solid #1d3557;padding:9px 15px;
+         border-radius:0 5px 5px 0;margin:0 0 1.4em;font-size:0.97em;line-height:1.55;}
+
+/* ── Quick explorer widget ── */
+#br-quick-explorer{border:1px solid #ccd6e8;border-radius:6px;padding:14px 16px;
+                   background:white;margin-bottom:1.8em;}
+#br-quick-explorer *{font-size:1rem !important;line-height:1.4 !important;}
+#br-quick-explorer h4{margin:0 0 6px;color:#1d3557;font-size:1.15rem !important;}
+.meta{color:#666;margin-bottom:10px;font-size:0.92rem !important;}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+          gap:10px;margin-bottom:10px;}
+.controls label{display:block;font-weight:600;margin-bottom:3px;}
+.controls select,.controls input[type="number"]{
+  width:100%;padding:5px 7px;border:1px solid #ccd6e8;border-radius:4px;background:white;}
+.checks{display:flex;flex-wrap:wrap;gap:10px 18px;margin-bottom:8px;}
+.checks label{font-weight:500;margin:0;}
+#br-summary{margin:4px 0 8px;font-weight:600;font-size:0.95rem !important;}
+.explorer-link{margin:0 0 8px;}
+.explorer-link a{display:inline-block;background:#1d3557;color:white;padding:4px 14px;
+  border-radius:4px;text-decoration:none;font-weight:600;font-size:0.91em !important;}
+.explorer-link a:hover{background:#457b9d;}
+.table-wrap{max-height:480px;overflow:auto;border:1px solid #ccd6e8;border-radius:4px;}
+#br-quick-explorer table{width:100%;border-collapse:collapse;margin:0;}
+#br-quick-explorer th,#br-quick-explorer td{
+  border:1px solid #dde4f0;padding:4px 9px;text-align:left;}
+#br-quick-explorer th{background:rgba(30,136,229,.08);color:#1d3557;
+  position:sticky;top:0;z-index:1;}
+
+/* ── Info sections below ── */
+h2{color:#1d3557;font-size:1.1em;border-bottom:2px solid #c9d7ea;
+   padding-bottom:3px;margin-top:2em;}
+table.info{border-collapse:collapse;width:100%;margin:.5em 0 1em;}
+table.info th{background:#1d3557;color:white;padding:6px 11px;text-align:left;font-size:.93em;}
+table.info td{padding:5px 11px;border-bottom:1px solid #dde;font-size:.93em;}
+table.info tr:hover td{background:#eef4fb;}
+table.info .r{text-align:right;}
+code{background:#eef4fb;padding:1px 5px;border-radius:3px;font-size:.87em;font-family:monospace;}
+pre{background:#eef4fb;padding:11px 13px;border-radius:5px;font-size:.87em;overflow-x:auto;}
+.ack{background:#fff8e6;border-left:4px solid #c8a020;padding:9px 15px;
+     border-radius:0 5px 5px 0;margin:1em 0;font-size:.95em;line-height:1.55;}
+.ack p{margin:.25em 0;}
+.badge-hpc{display:inline-block;background:#fff3cd;border:1px solid #c8a020;
+           color:#7a5000;padding:1px 6px;border-radius:999px;font-size:.82em;}
+footer{font-size:.84em;color:#888;border-top:1px solid #dde;
+       padding-top:9px;margin-top:2em;line-height:1.6;}
 </style>
 </head>
 <body>
 
-<h1>Bollobás&ndash;Riordan Polynomial Database<br>
-<small style="font-size:0.65em;color:#456;">Lens Spaces L(p, q) via Heegaard Ribbon Graphs</small></h1>
-<p class="subtitle">
-  Interactive explorers for the Bollobás&ndash;Riordan polynomial of the Heegaard graph
-  G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) on the torus T&sup2;.
-  Each explorer lets you select spanning subgraphs and inspect the corresponding monomial,
-  the ribbon-graph invariants, and the torus embedding in real time.
-</p>
+<div id="header">
+  <h1>Bollobás&ndash;Riordan Polynomial Database &mdash; Lens Spaces L(p,&thinsp;q)</h1>
+  <span class="sub">45 cases &nbsp;|&nbsp; p &le; 20 &nbsp;|&nbsp; Heegaard ribbon graphs on T&sup2;</span>
+  <a href="https://github.com/joseluis/br-lens-spaces">GitHub</a>
+</div>
 
-<div class="section">
-<h2>How to use an explorer</h2>
+<div id="main">
+
+<div class="callout">
+  Select a lens space below to browse its Bollobás&ndash;Riordan polynomial term by term,
+  filter by exponents, and open the full <strong>interactive graph explorer</strong>
+  for that case.
+</div>
+
+<!-- ── Inline explorer widget ─────────────────────────────────────────────── -->
+<div id="br-quick-explorer">
+  <div class="meta">Loading data&hellip;</div>
+</div>
+
+<!-- ── About ─────────────────────────────────────────────────────────────── -->
+<h2>About the database</h2>
 <p>
-  <strong>Left-click</strong> on an edge to add it to the subgraph F.
-  <strong>Right-click</strong> to remove it.
-  Use <em>Complete G</em> to select all 2p edges.
-  The panel on the right shows:
+  The file <code>data/BR_polynomials.json</code> contains the full BR polynomial of the
+  Heegaard graph G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) on T&sup2; as a list of monomials
+  \(x^s y^t z^{2g}\), together with the invariants S<sub>2</sub>, m<sub>2</sub>, F, G
+  and the S-profile T<sub>0</sub>, for all 45 canonical orbits of L(p,&thinsp;q) under
+  orientation-preserving homeomorphism with 3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20.
+  The signature (S<sub>2</sub>, m<sub>2</sub>, F, G) distinguishes all orbits and resolves
+  the 24 pairs with equal (S<sub>2</sub>, m<sub>2</sub>) found for p&nbsp;&le;&nbsp;100.
 </p>
-<ul>
-  <li>the monomial X<sup>s</sup>&thinsp;y<sup>t</sup>&thinsp;z<sup>2g(F)</sup> contributed by F,</li>
-  <li>ribbon-graph invariants k(F), f(F), g(F),</li>
-  <li>the coefficient of that monomial in BR(G),</li>
-  <li>the z-slice heat-map of the full polynomial at the selected genus level.</li>
-</ul>
-</div>
 
-<div class="section">
-<h2>Explorers &mdash; all cases in the database (p &le; 17)</h2>
-<table>
-<tr><th>Lens space</th><th>Heegaard graph</th><th>Orbits up to symmetry</th></tr>
-  <tr><td><a href="br_L3_1.html">L(3,&thinsp;1)</a></td><td>G(3;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=3</span></td></tr>
-  <tr><td><a href="br_L4_1.html">L(4,&thinsp;1)</a></td><td>G(4;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=4</span></td></tr>
-  <tr><td><a href="br_L5_1.html">L(5,&thinsp;1)</a></td><td>G(5;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=5</span></td></tr>
-  <tr><td><a href="br_L5_2.html">L(5,&thinsp;2)</a></td><td>G(5;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L6_1.html">L(6,&thinsp;1)</a></td><td>G(6;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td><span class="badge">p=6</span></td></tr>
-  <tr><td><a href="br_L7_1.html">L(7,&thinsp;1)</a></td><td>G(7;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=7</span></td></tr>
-  <tr><td><a href="br_L7_2.html">L(7,&thinsp;2)</a></td><td>G(7;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L8_1.html">L(8,&thinsp;1)</a></td><td>G(8;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=8</span></td></tr>
-  <tr><td><a href="br_L8_3.html">L(8,&thinsp;3)</a></td><td>G(8;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L9_1.html">L(9,&thinsp;1)</a></td><td>G(9;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=9</span></td></tr>
-  <tr><td><a href="br_L9_2.html">L(9,&thinsp;2)</a></td><td>G(9;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L10_1.html">L(10,&thinsp;1)</a></td><td>G(10;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=10</span></td></tr>
-  <tr><td><a href="br_L10_3.html">L(10,&thinsp;3)</a></td><td>G(10;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L11_1.html">L(11,&thinsp;1)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=11</span></td></tr>
-  <tr><td><a href="br_L11_2.html">L(11,&thinsp;2)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L11_3.html">L(11,&thinsp;3)</a></td><td>G(11;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L12_1.html">L(12,&thinsp;1)</a></td><td>G(12;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=12</span></td></tr>
-  <tr><td><a href="br_L12_5.html">L(12,&thinsp;5)</a></td><td>G(12;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
-  <tr><td><a href="br_L13_1.html">L(13,&thinsp;1)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="4"><span class="badge">p=13</span></td></tr>
-  <tr><td><a href="br_L13_2.html">L(13,&thinsp;2)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L13_3.html">L(13,&thinsp;3)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L13_5.html">L(13,&thinsp;5)</a></td><td>G(13;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
-  <tr><td><a href="br_L14_1.html">L(14,&thinsp;1)</a></td><td>G(14;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="2"><span class="badge">p=14</span></td></tr>
-  <tr><td><a href="br_L14_3.html">L(14,&thinsp;3)</a></td><td>G(14;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L15_1.html">L(15,&thinsp;1)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=15</span></td></tr>
-  <tr><td><a href="br_L15_2.html">L(15,&thinsp;2)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L15_4.html">L(15,&thinsp;4)</a></td><td>G(15;&nbsp;&plusmn;1,&nbsp;&plusmn;4)</td></tr>
-  <tr><td><a href="br_L16_1.html">L(16,&thinsp;1)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="3"><span class="badge">p=16</span></td></tr>
-  <tr><td><a href="br_L16_3.html">L(16,&thinsp;3)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L16_7.html">L(16,&thinsp;7)</a></td><td>G(16;&nbsp;&plusmn;1,&nbsp;&plusmn;7)</td></tr>
-  <tr><td><a href="br_L17_1.html">L(17,&thinsp;1)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;1)</td><td rowspan="5"><span class="badge">p=17</span></td></tr>
-  <tr><td><a href="br_L17_2.html">L(17,&thinsp;2)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;2)</td></tr>
-  <tr><td><a href="br_L17_3.html">L(17,&thinsp;3)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;3)</td></tr>
-  <tr><td><a href="br_L17_4.html">L(17,&thinsp;4)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;4)</td></tr>
-  <tr><td><a href="br_L17_5.html">L(17,&thinsp;5)</a></td><td>G(17;&nbsp;&plusmn;1,&nbsp;&plusmn;5)</td></tr>
-</table>
-<p style="font-size:0.88em;color:#666;margin-top:8px;">
-  35 cases covering all orbits of L(p,q) under orientation-preserving homeomorphism
-  for 3 &le; p &le; 17.
-  An additional file <a href="br_L17_3_shapes.html">br_L17_3_shapes.html</a> shows
-  the shape decomposition for L(17,3).
+<h2>Computational complexity</h2>
+<p>
+  The computation enumerates all 2<sup>2p</sup> spanning subgraphs, reduced by Z/pZ
+  symmetry to necklace classes. Cases p = 18, 19, 20
+  (<span class="badge-hpc">★ HPC</span>) required the CIMAT&ndash;Mérida supercomputer.
 </p>
-</div>
-
-<div class="section">
-<h2>Repository contents</h2>
-<table>
-<tr><th>Path</th><th>Description</th></tr>
-<tr><td><code>data/BR_polynomials.json</code></td>
-    <td>Primary database: full BR polynomial (as term list) for each case, plus S-profile and invariants S₂, m₂, F, G</td></tr>
-<tr><td><code>src/generate_explorers.py</code></td>
-    <td>Python script that regenerates all HTML explorers from the JSON</td></tr>
-<tr><td><code>src/BR_lens_parallel.sage</code></td>
-    <td>SageMath script: parallel computation of BR polynomials via multiprocessing + Cython</td></tr>
-<tr><td><code>src/BR_lens_worker.py</code></td>
-    <td>Worker module used by the parallel script</td></tr>
-<tr><td><code>src/BR_lens_core.pyx</code></td>
-    <td>Cython extension: hot loop for ribbon-graph face counting (~1M masks/s per core)</td></tr>
-<tr><td><code>src/setup_BR.py</code></td>
-    <td>Build script for the Cython extension</td></tr>
+<table class="info">
+<tr><th>p</th><th class="r">Homeo. classes</th><th class="r">Canonical pairs</th><th class="r">Time (1 core)</th></tr>
+<tr><td>5</td> <td class="r">1</td><td class="r">220</td>           <td class="r">&lt;0.1 s</td></tr>
+<tr><td>7</td> <td class="r">2</td><td class="r">2 340</td>         <td class="r">~0.5 s</td></tr>
+<tr><td>11</td><td class="r">4</td><td class="r">382 K</td>         <td class="r">~5 s</td></tr>
+<tr><td>13</td><td class="r">5</td><td class="r">5 M</td>           <td class="r">~60 s</td></tr>
+<tr><td>17</td><td class="r">7</td><td class="r">1 G</td>           <td class="r">hours</td></tr>
+<tr><td>19 <span class="badge-hpc">★</span></td><td class="r">8</td><td class="r">14 G</td><td class="r">days</td></tr>
 </table>
+
+<h2>Reproducing the computation</h2>
+<pre># Build the Cython extension (recommended for p ≥ 13)
+cd src/ && sage -python setup_BR.py build_ext --inplace
+
+# Recompute all polynomials
+sage src/BR_lens_parallel.sage
+
+# Regenerate the HTML explorers from the JSON
+python src/generate_explorers.py</pre>
+
+<h2>Acknowledgements</h2>
+<div class="ack">
+  <p>Supported by <strong>SECIHTI grant CBF2023-2024-4059</strong>:
+     <em>"Interacciones topológico-computacionales"</em>.</p>
+  <p>Cases p = 18, 19, 20 computed on the <strong>Supercomputer of Unidad CIMAT&ndash;Mérida</strong>
+     (Centro de Investigación en Matemáticas, Mérida, México).</p>
+  <p>Portions of the implementation were developed with AI assistance and have been
+     rigorously verified against the mathematical theory.</p>
 </div>
 
-<div class="section">
-<h2>Regenerating the explorers</h2>
-<pre style="background:#eef4fb;padding:10px;border-radius:4px;font-size:0.9em;overflow-x:auto;">
-# Install dependencies
-pip install numpy plotly
-
-# Regenerate all HTML files from the JSON
-python src/generate_explorers.py
-</pre>
-</div>
+<h2>Citation</h2>
+<pre>Jose L. Leon. Bollobás–Riordan Polynomials of Lens Spaces: database and interactive explorers.
+Zenodo, 2026. DOI: [to be assigned]</pre>
 
 <footer>
-  Data computed with SageMath 10.7 + Cython on an 8-core Mac mini (Apple M2).
-  Ribbon-graph model: Heegaard splitting of the lens space L(p,q);
-  graph G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) has p vertices and 2p edges on T&sup2;.
-  &mdash; Jose L. Leon &mdash;
+  SageMath&nbsp;10.7 + Cython + multiprocessing &nbsp;|&nbsp;
+  CC&nbsp;BY&nbsp;4.0 (data) &nbsp;+&nbsp; MIT (code) &nbsp;|&nbsp;
   <a href="https://github.com/joseluis/br-lens-spaces">github.com/joseluis/br-lens-spaces</a>
 </footer>
+</div><!-- #main -->
+
+<script>
+(async function () {
+  const root = document.getElementById('br-quick-explorer');
+  if (!root) return;
+
+  let db = null;
+  try {
+    const r = await fetch('data/BR_polynomials.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+    if (!json || !Array.isArray(json.cases)) throw new Error("Missing 'cases' field");
+    db = json;
+  } catch (err) {
+    root.innerHTML = `<p><strong>Could not load BR_polynomials.json:</strong> ${err.message}</p>`;
+    return;
+  }
+
+  const cases = db.cases.slice().sort((a, b) => (a.p - b.p) || (a.q - b.q));
+
+  root.innerHTML = `
+    <h4>BR Polynomial Explorer</h4>
+    <div class="meta">
+      Source: <code>data/BR_polynomials.json</code> &nbsp;&middot;&nbsp;
+      Cases loaded: <strong>${cases.length}</strong>
+    </div>
+    <div class="controls">
+      <div>
+        <label for="br-case">Lens space L(p,q)</label>
+        <select id="br-case"></select>
+      </div>
+      <div>
+        <label for="br-sort">Sort by</label>
+        <select id="br-sort">
+          <option value="zyx">z, y, x (default)</option>
+          <option value="x">x (desc)</option>
+          <option value="y">y (desc)</option>
+          <option value="z">z (desc)</option>
+          <option value="coef">|coef| (desc)</option>
+        </select>
+      </div>
+      <div>
+        <label for="br-ex-min">exp(x) min</label>
+        <input id="br-ex-min" type="number" min="0" step="1" />
+      </div>
+      <div>
+        <label for="br-ex-max">exp(x) max</label>
+        <input id="br-ex-max" type="number" min="0" step="1" />
+      </div>
+      <div>
+        <label for="br-ey-min">exp(y) min</label>
+        <input id="br-ey-min" type="number" min="0" step="1" />
+      </div>
+      <div>
+        <label for="br-ey-max">exp(y) max</label>
+        <input id="br-ey-max" type="number" min="0" step="1" />
+      </div>
+    </div>
+    <div class="checks">
+      <label><input id="br-z0" type="checkbox" checked /> Include z<sup>0</sup></label>
+      <label><input id="br-z2" type="checkbox" checked /> Include z<sup>2</sup></label>
+    </div>
+    <div id="br-summary" class="summary"></div>
+    <div id="br-link" class="explorer-link"></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Coeff.</th><th>exp x</th><th>exp y</th><th>exp z</th><th>Monomial</th>
+        </tr></thead>
+        <tbody id="br-body"></tbody>
+      </table>
+    </div>
+  `;
+
+  const selectCase = root.querySelector('#br-case');
+  const sortMode   = root.querySelector('#br-sort');
+  const exMin = root.querySelector('#br-ex-min');
+  const exMax = root.querySelector('#br-ex-max');
+  const eyMin = root.querySelector('#br-ey-min');
+  const eyMax = root.querySelector('#br-ey-max');
+  const z0    = root.querySelector('#br-z0');
+  const z2    = root.querySelector('#br-z2');
+  const summary = root.querySelector('#br-summary');
+  const linkDiv = root.querySelector('#br-link');
+  const body    = root.querySelector('#br-body');
+
+  for (const c of cases) {
+    const opt = document.createElement('option');
+    opt.value = c.label;
+    opt.textContent = c.label;
+    selectCase.appendChild(opt);
+  }
+
+  function typesetMath(target) {
+    if (window.MathJax && typeof window.MathJax.typesetPromise === 'function')
+      window.MathJax.typesetPromise([target]).catch(() => {});
+  }
+
+  function monomialLatex(ex, ey, ez, coef) {
+    const hasVars = ex > 0 || ey > 0 || ez > 0;
+    if (!hasVars) return String(coef);
+    let out = '';
+    if (coef === -1) out += '-';
+    else if (coef !== 1) out += String(coef);
+    if (ex > 0) out += ex === 1 ? 'x' : `x^{${ex}}`;
+    if (ey > 0) out += ey === 1 ? 'y' : `y^{${ey}}`;
+    if (ez > 0) out += ez === 1 ? 'z' : `z^{${ez}}`;
+    return out || '1';
+  }
+
+  function updateBounds(c) {
+    exMin.value = 0; exMax.value = c.max_ex;
+    eyMin.value = 0; eyMax.value = c.max_ey;
+    exMin.max = c.max_ex; exMax.max = c.max_ex;
+    eyMin.max = c.max_ey; eyMax.max = c.max_ey;
+  }
+
+  function render() {
+    const c = cases.find(x => x.label === selectCase.value) || cases[0];
+    const xmin = Math.max(0, Number(exMin.value || 0));
+    const xmax = Math.max(xmin, Number(exMax.value || c.max_ex));
+    const ymin = Math.max(0, Number(eyMin.value || 0));
+    const ymax = Math.max(ymin, Number(eyMax.value || c.max_ey));
+    const allowedZ = [];
+    if (z0.checked) allowedZ.push(0);
+    if (z2.checked) allowedZ.push(2);
+
+    let terms = c.terms.filter(([ex, ey, ez]) => {
+      if (allowedZ.length > 0 && !allowedZ.includes(ez)) return false;
+      return ex >= xmin && ex <= xmax && ey >= ymin && ey <= ymax;
+    });
+
+    if (sortMode.value === 'x')
+      terms = terms.slice().sort((a,b) => b[0]-a[0] || b[1]-a[1] || b[2]-a[2]);
+    else if (sortMode.value === 'y')
+      terms = terms.slice().sort((a,b) => b[1]-a[1] || b[0]-a[0] || b[2]-a[2]);
+    else if (sortMode.value === 'z')
+      terms = terms.slice().sort((a,b) => b[2]-a[2] || b[0]-a[0] || b[1]-a[1]);
+    else if (sortMode.value === 'coef')
+      terms = terms.slice().sort((a,b) => Math.abs(b[3])-Math.abs(a[3]));
+    else
+      terms = terms.slice().sort((a,b) => b[2]-a[2] || b[1]-a[1] || b[0]-a[0]);
+
+    summary.textContent =
+      `${c.label} · total terms: ${c.n_terms} · filtered: ${terms.length}`;
+
+    linkDiv.innerHTML =
+      `<a href="L${c.p}_${c.q}.html" target="_blank">` +
+      `&#128279; Open interactive explorer &mdash; G(${c.p};&nbsp;&plusmn;1,&nbsp;&plusmn;${c.q})</a>`;
+
+    const maxRows = 1500;
+    const clipped = terms.length > maxRows;
+    body.innerHTML = (clipped ? terms.slice(0, maxRows) : terms)
+      .map(([ex, ey, ez, coef]) => `
+        <tr>
+          <td>${coef}</td><td>${ex}</td><td>${ey}</td><td>${ez}</td>
+          <td>\\(${monomialLatex(ex, ey, ez, coef)}\\)</td>
+        </tr>`).join('');
+
+    if (clipped) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td colspan="5"><em>Showing ${maxRows} of ${terms.length} terms — adjust filters to reduce.</em></td>`;
+      body.appendChild(tr);
+    }
+    typesetMath(body);
+  }
+
+  selectCase.addEventListener('change', () => {
+    const c = cases.find(x => x.label === selectCase.value) || cases[0];
+    updateBounds(c); render();
+  });
+  [sortMode, exMin, exMax, eyMin, eyMax, z0, z2].forEach(el => {
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+
+  selectCase.value = cases[0].label;
+  updateBounds(cases[0]);
+  render();
+})();
+</script>
 </body>
 </html>
