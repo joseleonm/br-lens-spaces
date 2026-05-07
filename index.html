@@ -26,19 +26,16 @@ body{margin:0;font-family:Georgia,'Times New Roman',serif;background:#f4f6fa;
 /* ── Layout ── */
 #main{max-width:1340px;margin:0 auto;padding:28px 28px 56px;}
 
-/* ── Hero ── */
-.hero{background:linear-gradient(135deg,#1d3557 0%,#2a6496 100%);color:white;
-      border-radius:10px;padding:26px 32px;margin-bottom:28px;}
-.hero h2{margin:0 0 10px;font-size:1.15em;font-weight:bold;color:white;}
-.hero p{margin:0;font-size:0.94em;color:#c8ddf0;line-height:1.55;}
-
 /* ── Explorer widget ── */
 #br-quick-explorer{background:white;border:1px solid #ccd6ea;border-radius:10px;
                    padding:22px 26px;margin-bottom:28px;
                    box-shadow:0 2px 12px rgba(29,53,87,0.08);}
-#br-quick-explorer h4{margin:0 0 18px;color:#1d3557;font-size:1.08em;
-                      border-bottom:2px solid #e2eaf6;padding-bottom:10px;}
-.meta{color:#666;margin-bottom:16px;font-size:0.88em;}
+.intro-line{font-size:0.93em;color:#334;margin:0 0 18px;line-height:1.5;
+            border-bottom:2px solid #e2eaf6;padding-bottom:12px;}
+.page-footer{font-size:0.82em;color:#999;border-top:1px solid #dde;
+             padding-top:12px;margin-top:28px;line-height:1.6;text-align:center;}
+.page-footer a{color:#1d3557;text-decoration:none;}
+.page-footer a:hover{text-decoration:underline;}
 
 /* Selector row: case picker + open button side by side */
 .selector-row{display:flex;align-items:flex-end;gap:14px;
@@ -92,24 +89,15 @@ a.open-btn .arrow{font-size:1.1em;}
 
 <div id="main">
 
-<div class="hero">
-  <h2>Bollobás&ndash;Riordan Polynomial of Lens Spaces</h2>
-  <p>
-    For each lens space L(p,&thinsp;q), the canonical Heegaard ribbon graph
-    G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) is embedded on the torus T&sup2;.
-    This database contains the full BR polynomial of G for all 45 homeomorphism
-    orbits with 3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20. Select a case below to
-    browse the polynomial term by term and open the corresponding
-    <strong>interactive graph explorer</strong>.
-  </p>
-</div>
-
-<!-- ── Inline explorer widget ─────────────────────────────────────────────── -->
+<!-- ── Explorer widget ───────────────────────────────────────────────────── -->
 <div id="br-quick-explorer">
-  <h4>Polynomial Browser</h4>
   <div class="meta">Loading data&hellip;</div>
 </div>
 
+  <p class="page-footer">
+    For implementation details, mathematical background, and associated resources,
+    see the <a href="https://github.com/joseleonm/br-lens-spaces" target="_blank">GitHub repository</a>.
+  </p>
 </div><!-- #main -->
 
 <script>
@@ -140,11 +128,13 @@ a.open-btn .arrow{font-size:1.1em;}
   }
 
   root.innerHTML = `
-    <h4>Polynomial Browser</h4>
-    <div class="meta">
-      Source: <code>data/BR_polynomials.json</code> &nbsp;&middot;&nbsp;
-      Cases loaded: <strong>${cases.length}</strong>
-    </div>
+    <p class="intro-line">
+      Bollobás&ndash;Riordan polynomial of the Heegaard graph
+      G(p;&nbsp;&plusmn;1,&nbsp;&plusmn;q) on T&sup2; &mdash;
+      <strong>${cases.length} homeomorphism orbits</strong> of L(p,&thinsp;q),
+      3&nbsp;&le;&nbsp;p&nbsp;&le;&nbsp;20.
+      Select a lens space and open its interactive explorer.
+    </p>
     <div class="selector-row">
       <div>
         <label for="br-case">Lens space L(p,&thinsp;q)</label>
