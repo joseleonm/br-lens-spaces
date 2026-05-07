@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Explorador BR — G(19; ±1, ±4)</title>
+<title>BR Explorer — G(19; ±1, ±4)</title>
 <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 <style>
 *{box-sizing:border-box;}
@@ -53,14 +53,14 @@ body{margin:0;font-family:'Times New Roman',serif;background:#fafafa;font-size:1
 </head>
 <body>
 <div id="header">
-  <b>G(19;&nbsp;&plusmn;1,&nbsp;&plusmn;4) &mdash; Explorador BR</b>
+  <b>G(19;&nbsp;&plusmn;1,&nbsp;&plusmn;4) &mdash; BR Explorer</b>
   <span>
-        <b>Click izq:</b> anadir arista &nbsp;
-        <b>Click der:</b> quitar arista &nbsp;
-        <button id="btn-clear">Limpiar</button>
-        <button id="btn-complete">Completar G</button>
+        <b>Left click:</b> add edge &nbsp;
+        <b>Right click:</b> remove edge &nbsp;
+        <button id="btn-clear">Clear</button>
+        <button id="btn-complete">Complete G</button>
   </span>
-  <span style="margin-left:auto">arista e = paso &plusmn;1 &nbsp;|&nbsp; arista f = paso &plusmn;4</span>
+  <span style="margin-left:auto">edge e = step &plusmn;1 &nbsp;|&nbsp; edge f = step &plusmn;4</span>
 </div>
 <div id="top">
   <div id="left"><canvas id="grid"></canvas></div>
@@ -172,10 +172,10 @@ function drawGrid(sel){
     }
     gc.fillStyle='#111'; gc.font=`bold italic ${CELL*0.36}px serif`;
     gc.textAlign='center'; gc.textBaseline='top';
-    gc.fillText(`x  (arista e, \u00b11)`,MGl+NX*CELL/2, MGt+NY*CELL+26);
+    gc.fillText(`x  (edge e, \u00b11)`,MGl+NX*CELL/2, MGt+NY*CELL+26);
     gc.save(); gc.translate(8,MGt+NY*CELL/2);
     gc.rotate(-Math.PI/2); gc.textAlign='center'; gc.textBaseline='top';
-    gc.fillText(`y  (arista f, \u00b1${Q})`,0,0); gc.restore();
+    gc.fillText(`y  (edge f, \u00b1${Q})`,0,0); gc.restore();
 
     // Steiner tree hint
     gc.lineCap='round'; gc.strokeStyle='#bbb'; gc.lineWidth=3.5;
@@ -196,7 +196,7 @@ function drawGrid(sel){
         }
     }
     gc.setLineDash([]);
-    // Aristas seleccionadas
+    // Selected edges
     gc.lineCap='round';
     for(const eid of sel){
         gc.strokeStyle=EDGE_COLORS[eid]; gc.lineWidth=5.5;
@@ -227,7 +227,7 @@ function drawDiamond(sel){
     dc.clearRect(0,0,dCanvas.width,dCanvas.height);
     dc.fillStyle='#1d3557'; dc.font=`bold 14px serif`;
     dc.textAlign='center'; dc.textBaseline='top';
-    dc.fillText('Dominio diamante / borde tipo L',dCanvas.width/2,2);
+    dc.fillText('Diamond domain / L-shaped boundary',dCanvas.width/2,2);
     dc.strokeStyle='#e3e7ee'; dc.lineWidth=0.8;
     for(let gx=0;gx<=D_NX;gx++){
         const x=10+gx*CELLD;
@@ -267,13 +267,13 @@ function drawDiamond(sel){
     dc.beginPath(); dc.arc(ox,oy,2.8,0,2*Math.PI); dc.fill();
     dc.font='13px sans-serif'; dc.textBaseline='middle';
     dc.fillStyle='#457b9d'; dc.fillRect(10,dCanvas.height-43,12,12);
-    dc.fillStyle='#444'; dc.fillText('v\u00e9rtice activo',25,dCanvas.height-37);
+    dc.fillStyle='#444'; dc.fillText('active vertex',25,dCanvas.height-37);
     dc.fillStyle='#e8eef4'; dc.strokeStyle='#aaa'; dc.lineWidth=0.7;
     dc.fillRect(120,dCanvas.height-43,12,12); dc.strokeRect(120,dCanvas.height-43,12,12);
-    dc.fillStyle='#444'; dc.fillText('aislado',135,dCanvas.height-37);
+    dc.fillStyle='#444'; dc.fillText('isolated',135,dCanvas.height-37);
     const activeList=[...active].sort((a,b)=>a-b).join(', ') || '-';
     dc.fillStyle='#444'; dc.font='12px monospace';
-    dc.fillText(`consumidos: ${activeList}`,10,dCanvas.height-17);
+    dc.fillText(`endpoints: ${activeList}`,10,dCanvas.height-17);
 }
 
 let torusReady=false;
@@ -291,7 +291,7 @@ function initTorus(){
                aspectmode:'data',bgcolor:'#f8faff',
                camera:{eye:{x:1.6,y:1.4,z:1.1}}},
         paper_bgcolor:'white',
-        title:{text:'Grafo en el toro T\u00b2',font:{size:13},x:0.5}};
+        title:{text:'Graph on the torus T\u00b2',font:{size:13},x:0.5}};
     Plotly.newPlot('torus-div',[surf,verts,edges],layout,
                    {responsive:true,displayModeBar:false})
           .then(()=>{torusReady=true;});
@@ -309,10 +309,10 @@ function updateTorus(sel){
 function updateExponentRibbon(br){
     document.getElementById('br-ribbon').innerHTML=
     `<div class="rtext">`+
-    `Un <b>subgrafo abarcador F \u2286 G</b> conserva todos los v\u00e9rtices y elige cualquier subconjunto de aristas. `+
-    `Sus invariantes son: <b>k(F)</b> componentes conexas, <b>e(F)</b> aristas, <b>v(F)</b> v\u00e9rtices, <b>f(F)</b> caras del ribbon y <b>g(F)</b> g\u00e9nero. `+
-    `De ellos se derivan <b>r(F) = v(F) \u2212 k(F)</b> (rango) y <b>n(F) = e(F) \u2212 r(F)</b> (nulidad), `+
-    `que determinan los exponentes del monomio de BR correspondiente.`+
+    `A <b>spanning subgraph F \u2286 G</b> retains all vertices and selects any subset of edges. `+
+    `Its invariants are: <b>k(F)</b> connected components, <b>e(F)</b> edges, <b>v(F)</b> vertices, <b>f(F)</b> ribbon faces, and <b>g(F)</b> genus. `+
+    `From these one derives <b>r(F) = v(F) \u2212 k(F)</b> (rank) and <b>n(F) = e(F) \u2212 r(F)</b> (nullity), `+
+    `which determine the exponents of the corresponding BR monomial.`+
     `</div>`+
     `<div class="rvals">`+
     `<span class="rbadge">n(F)=<b>${br.nF}</b></span>`+
@@ -328,18 +328,18 @@ function updateBRDisplay(sel){
     const coefNorm=fmtNorm(coefRaw);
     const repMono=br.eF===0 ? '1' : `X<sup>${br.s}</sup>&thinsp;y<sup>${br.t}</sup>&thinsp;z<sup>${br.zExp}</sup>`;
     updateExponentRibbon(br);
-    const tags=[...sel].map(e=>`<span class="etag" style="background:${EDGE_COLORS[e]}">${e}</span>`).join(' ')||'<em style="color:#888">ninguna</em>';
+    const tags=[...sel].map(e=>`<span class="etag" style="background:${EDGE_COLORS[e]}">${e}</span>`).join(' ')||'<em style="color:#888">none</em>';
     document.getElementById('br-display').innerHTML=`
       <table class="brtable">
-        <tr><th colspan="2">Subgrafo seleccionado</th></tr>
-                <tr><td>Representante</td><td>${repMono}</td></tr>
-        <tr><td>Aristas</td><td>${tags}</td></tr>
+        <tr><th colspan="2">Selected subgraph</th></tr>
+                <tr><td>Monomial</td><td>${repMono}</td></tr>
+        <tr><td>Edges</td><td>${tags}</td></tr>
         <tr><td>e(F)</td><td>${br.eF} / ${2*P}</td></tr>
         <tr><td>k(F)</td><td>${br.kF}</td></tr>
         <tr><td>f(F)</td><td>${br.fF}</td></tr>
         <tr><td>g(F)</td><td>${br.gF}</td></tr>
-        <tr><td>Coef.</td><td><b>${coefRaw}</b></td></tr>
-        <tr><td>Coef/p</td><td><b>${coefNorm}</b></td></tr>
+        <tr><td>Coeff.</td><td><b>${coefRaw}</b></td></tr>
+        <tr><td>Coeff/p</td><td><b>${coefNorm}</b></td></tr>
       </table>`;
 }
 
@@ -350,8 +350,8 @@ function updateCrestDisplay(sel){
     if(sliceTerms.length===0){
         document.getElementById('crest-display').innerHTML=
             `<table class="cresttable">`+
-            `<tr><th colspan="4">Rebanada z<sup>${br.zExp}</sup></th></tr>`+
-            `<tr><td colspan="4">No hay t\u00e9rminos en la base de datos con este exponente de z.</td></tr>`+
+            `<tr><th colspan="4">z<sup>${br.zExp}</sup>-slice</th></tr>`+
+            `<tr><td colspan="4">No terms found in the database with this z-exponent.</td></tr>`+
             `</table>`;
         return;
     }
@@ -370,12 +370,12 @@ function updateCrestDisplay(sel){
 
     document.getElementById('crest-display').innerHTML=
         `<div class="slicebox">`+
-        `<div class="slicetitle">Rebanada z<sup>${br.zExp}</sup> : punto (a,b) = y<sup>a</sup>X<sup>b</sup></div>`+
+        `<div class="slicetitle">z<sup>${br.zExp}</sup>-slice &mdash; point (s,t) = x<sup>s</sup>y<sup>t</sup></div>`+
         `<canvas id="zslice-canvas" width="${width}" height="${height}"></canvas>`+
         `<div class="slicelegend">`+
-        `<span><b>Verde</b>: representante X<sup>${br.s}</sup>y<sup>${br.t}</sup>z<sup>${br.zExp}</sup></span> &nbsp;|&nbsp;`+
-        `<span><b>Ámbar</b>: cascada de la expansión en x</span> &nbsp;|&nbsp;`+
-        `<span><b>Azul</b>: término presente fuera de la cascada</span> &nbsp;|&nbsp;`+
+        `<span><b>Green</b>: representative x<sup>${br.s}</sup>y<sup>${br.t}</sup>z<sup>${br.zExp}</sup></span> &nbsp;|&nbsp;`+
+        `<span><b>Amber</b>: cascade of the x-expansion</span> &nbsp;|&nbsp;`+
+        `<span><b>Blue</b>: term present outside the cascade</span> &nbsp;|&nbsp;`+
         `<span>${tMin} \u2264 t \u2264 ${tMax}, &nbsp; ${sMin} \u2264 s \u2264 ${sMax}</span>`+
         `</div></div>`;
 
@@ -437,13 +437,13 @@ function updateCrestDisplay(sel){
     cx.font='bold 14px sans-serif';
     cx.textAlign='center';
     cx.textBaseline='top';
-    cx.fillText('a = exponente de y (nulidad t)', ml+nT*cellW/2, height-18);
+    cx.fillText('t = exponent of y (nullity)', ml+nT*cellW/2, height-18);
     cx.save();
     cx.translate(14, mt+nS*cellH/2);
     cx.rotate(-Math.PI/2);
     cx.textAlign='center';
     cx.textBaseline='top';
-    cx.fillText('b = exponente de X (conectividad s)',0,0);
+    cx.fillText('s = exponent of x (connectivity)',0,0);
     cx.restore();
 }
 
